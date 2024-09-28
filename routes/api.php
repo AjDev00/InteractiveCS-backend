@@ -35,3 +35,13 @@ Route::get('get-reply', [ReplyCommentController::class, 'index']);
 Route::get('get-replyOfReply', [ReplyOfReplyController::class, 'index']);
 
 Route::delete('erase-comment/{id}', [CommentController::class, 'destroy']);
+
+Route::put('edit-comment/{id}', [CommentController::class, 'update']);
+
+Route::get('get-single-comment/{id}', [CommentController::class, 'show']);
+
+Route::delete('erase-reply/{id}', [ReplyCommentController::class, 'destroy']);
+
+Route::put('edit-reply/{id}', [ReplyCommentController::class, 'update']);
+
+Route::get('get-single-reply/{id}', [ReplyCommentController::class, 'show']);

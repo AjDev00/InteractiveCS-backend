@@ -10,8 +10,7 @@ class CommentController extends Controller
 {
     //show all comments.
     public function index(){
-        $comment = new Comment();
-        $comments = $comment->all();
+       $comments = Comment::with("replies")->get();
 
         return response()->json([
             'status' => true,
@@ -71,7 +70,6 @@ class CommentController extends Controller
             ]);
         }
 
-        $comment = new Comment();
         $comment->user_comment = $request->user_comment;
         $comment->save();
 
@@ -79,6 +77,24 @@ class CommentController extends Controller
             'status' => true,
             'message' => 'Comment Updated Successfully',
             'data' => $comment,
+        ]);
+    }
+
+
+    //get a single comment.
+    public function show($id){
+        $comment = Comment::find($id);
+
+        if($comment === null){
+            return response()->json([
+                'status' => false,
+                'message' => 'Comment not found!'
+            ]);
+        }
+
+        return response()->json([
+            'status' => true,
+            'data' => $comment
         ]);
     }
 
