@@ -3,6 +3,7 @@
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ReplyCommentController;
 use App\Http\Controllers\ReplyOfReplyController;
+use App\Http\Controllers\ReplyResponsesController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -32,8 +33,6 @@ Route::post('add-reply', [ReplyCommentController::class, 'store']);
 
 Route::get('get-reply', [ReplyCommentController::class, 'index']);
 
-Route::get('get-replyOfReply', [ReplyOfReplyController::class, 'index']);
-
 Route::delete('erase-comment/{id}', [CommentController::class, 'destroy']);
 
 Route::put('edit-comment/{id}', [CommentController::class, 'update']);
@@ -45,3 +44,11 @@ Route::delete('erase-reply/{id}', [ReplyCommentController::class, 'destroy']);
 Route::put('edit-reply/{id}', [ReplyCommentController::class, 'update']);
 
 Route::get('get-single-reply/{id}', [ReplyCommentController::class, 'show']);
+
+Route::post('reply-response', [ReplyResponsesController::class, 'store']);
+
+Route::delete('erase-response/{id}', [ReplyResponsesController::class, 'destroy']);
+
+Route::put('edit-response/{id}', [ReplyResponsesController::class, 'update']);
+
+Route::get('get-single-response/{id}', [ReplyResponsesController::class, 'show']);

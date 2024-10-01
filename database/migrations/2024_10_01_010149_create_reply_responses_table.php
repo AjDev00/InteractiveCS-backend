@@ -11,10 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('replies_of_replies', function (Blueprint $table) {
+        Schema::create('reply_responses', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("reply_id")->constrained()->onDelete("cascade")->onUpdate("cascade");
-            $table->string("reply_of_reply_comment");
+            $table->foreignId("reply_id")->constrained()->onUpdate("cascade")->onDelete("cascade");
+            $table->foreignId("comment_id")->constrained()->onUpdate("cascade")->onDelete("cascade");
+            $table->string("reply_response");
             $table->timestamps();
         });
     }
@@ -24,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('replies_of_replies');
+        Schema::dropIfExists('reply_responses');
     }
 };

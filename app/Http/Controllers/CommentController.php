@@ -10,7 +10,7 @@ class CommentController extends Controller
 {
     //show all comments.
     public function index(){
-       $comments = Comment::with("replies")->get();
+       $comments = Comment::with("replies")->with("replyResponses")->get();
 
         return response()->json([
             'status' => true,
